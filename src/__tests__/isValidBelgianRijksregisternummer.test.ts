@@ -3,27 +3,27 @@ import {
   isValidBelgianRijksregisternummer,
 } from "../index";
 
-const valid2000 = "00020200179"; //02-02-2000
-const validWithSeparators2000 = "00.02.02-001.79"; //02-02-2000
+const valid2000_male = "00020200179"; //02-02-2000
+const validWithSeparators2000_male = "00.02.02-001.79"; //02-02-2000
 
-const valid2014 = "14040300166"; //03-04-2014
-const validWithSeparators2004 = "14.04.03-001.66"; //03-04-2014
+const valid2014_male = "14040300166"; //03-04-2014
+const validWithSeparators2004_male = "14.04.03-001.66"; //03-04-2014
 
-const valid1980 = "80040300165"; //03-04-1980
-const validWithSeparators1980 = "80.04.03-001.65"; //03-04-1980
+const valid1980_female = "80040300264"; //03-04-1980
+const validWithSeparators1980_female = "80.04.03-002.64"; //03-04-1980
 
-const valid1996 = "96040300113"; //03-04-96
-const validWithSeparators1996 = "96.04.03-001.13"; //03-04-96
+const valid1996_male = "96040300113"; //03-04-96
+const validWithSeparators1996_male = "96.04.03-001.13"; //03-04-96
 
 describe("isValidBelgianRijksregisternummer", () => {
   it("returns true for a valid Belgian rijksregisternummer", () => {
-    expect(isValidBelgianRijksregisternummer(valid2000)).toBe(true);
+    expect(isValidBelgianRijksregisternummer(valid2000_male)).toBe(true);
   });
 
   it("returns true for a valid Belgian rijksregisternummer", () => {
-    expect(isValidBelgianRijksregisternummer(validWithSeparators2000)).toBe(
-      true
-    );
+    expect(
+      isValidBelgianRijksregisternummer(validWithSeparators2000_male)
+    ).toBe(true);
   });
 
   it("returns false for a rijksregisternummer with incorrect checksum", () => {
@@ -45,20 +45,20 @@ describe("extractDateOfBirthFromRijksregisternummer", () => {
 
   it("should correctly extract date of birth from valid input", () => {
     const expectedDate = new Date(2000, 1, 2);
-    expect(extractDateOfBirthFromRijksregisternummer(valid2000)).toEqual(
+    expect(extractDateOfBirthFromRijksregisternummer(valid2000_male)).toEqual(
       expectedDate
     );
   });
   it("should correctly extract date of birth from valid input that is formatted with . and -", () => {
     const expectedDate = new Date(2000, 1, 2);
     expect(
-      extractDateOfBirthFromRijksregisternummer(validWithSeparators2000)
+      extractDateOfBirthFromRijksregisternummer(validWithSeparators2000_male)
     ).toEqual(expectedDate);
   });
 
   it("should handle years in the 2000s correctly", () => {
     const expectedDate = new Date(2014, 3, 3);
-    expect(extractDateOfBirthFromRijksregisternummer(valid2014)).toEqual(
+    expect(extractDateOfBirthFromRijksregisternummer(valid2014_male)).toEqual(
       expectedDate
     );
   });
@@ -66,21 +66,55 @@ describe("extractDateOfBirthFromRijksregisternummer", () => {
   it("should handle years in the 2000s correctly formatted with . and -", () => {
     const expectedDate = new Date(2014, 3, 3);
     expect(
-      extractDateOfBirthFromRijksregisternummer(validWithSeparators2004)
+      extractDateOfBirthFromRijksregisternummer(validWithSeparators2004_male)
     ).toEqual(expectedDate);
   });
 
   it("should handle years in the 1900s correctly", () => {
     const expectedDate = new Date(1980, 3, 3);
-    expect(extractDateOfBirthFromRijksregisternummer(valid1980)).toEqual(
+    expect(extractDateOfBirthFromRijksregisternummer(valid1980_female)).toEqual(
       expectedDate
     );
   });
 
   it("should handle leap years correctly", () => {
     const expectedDate = new Date(1996, 3, 3);
-    expect(extractDateOfBirthFromRijksregisternummer(valid1996)).toEqual(
+    expect(extractDateOfBirthFromRijksregisternummer(valid1996_male)).toEqual(
       expectedDate
     );
+  });
+});
+
+import { extractGenderFromRijksregisternummer, Gender } from "../index";
+
+describe("extractGenderFromRijksregisternummer", () => {
+  it("should return Male for a valid male Belgian rijksregisternummer", () => {
+    expect(extractGenderFromRijksregisternummer(valid2014_male)).toEqual(
+      Gender.Male
+    );
+  });
+
+  it("should return Female for a valid male Belgian rijksregisternummer", () => {
+    expect(extractGenderFromRijksregisternummer(valid1980_female)).toEqual(
+      Gender.Female
+    );
+  });
+
+  it("should return Male for a valid male Belgian rijksregisternummer", () => {
+    expect(extractGenderFromRijksregisternummer(valid1996_male)).toEqual(
+      Gender.Male
+    );
+  });
+
+  it("should return Female for a valid male Belgian rijksregisternummer", () => {
+    expect(
+      extractGenderFromRijksregisternummer(validWithSeparators1980_female)
+    ).toEqual(Gender.Female);
+  });
+
+  it("should return Male for a valid male Belgian rijksregisternummer", () => {
+    expect(
+      extractGenderFromRijksregisternummer(validWithSeparators2000_male)
+    ).toEqual(Gender.Male);
   });
 });

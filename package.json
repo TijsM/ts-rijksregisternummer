@@ -10,12 +10,20 @@
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "typescript": "tsc"
   },
   "keywords": [],
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "^7.23.3"
   }
 }

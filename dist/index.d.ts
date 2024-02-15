@@ -1,6 +1,7 @@
 export declare enum Gender {
     Male = "Male",
-    Female = "Female"
+    Female = "Female",
+    Unknown = "Unkown"
 }
 export declare const isValidBelgianRijksregisternummer: (rijksregisternummer: string) => boolean;
 export declare const extractDateOfBirthFromRijksregisternummer: (rijksregisternummer: string) => Date | null;

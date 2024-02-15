@@ -1,7 +1,9 @@
 {
   "name": "ts-rijksregisternummer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package with helper functions for a belgian rijksregisternummer also known as balgian social security number (ssn) or insz number",
+  "repository": "https://github.com/TijsM/ts-rijksregisternummer",
+  "author": "Tijs Martens",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -12,7 +14,6 @@
     "typescript": "tsc"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.3.3"

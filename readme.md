@@ -43,3 +43,7 @@ Extracts the date of birth from the provided Belgian rijksregisternummer.
 
 `extractGenderFromRijksregisternummer(rijksregisternummer: string): Gender | null`
 Extracts the gender from the provided Belgian rijksregisternummer.
+
+---
+
+Made with ❤️ by [Rodi Digital](https://rodi-digital.com)

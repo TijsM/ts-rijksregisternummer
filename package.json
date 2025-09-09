@@ -1,9 +1,12 @@
 {
   "name": "ts-rijksregisternummer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A package with helper functions for a belgian rijksregisternummer also known as balgian social security number (ssn) or insz number",
   "repository": "https://github.com/TijsM/ts-rijksregisternummer",
-  "author": "Tijs Martens",
+  "author": {
+    "name": "Rodi Digital",
+    "url": "https://rodi-digital.com"
+  },
   "main": "dist/index.js",
   "files": [
     "dist"
